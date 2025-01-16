@@ -42,7 +42,10 @@ public partial class CPU {
     public bool IsInstructionComplete() => this.m_Cycles == 0;
 
     public void InterruptRequest() {
-        if (this.Status.InterruptDisable) return;
+        if (this.Status.InterruptDisable)
+        {
+            return;
+        }
 
         // Push the program counter to the stack
         this.Write((uint16_t)(this.SP + 0x0100), (uint8_t)((this.PC >> 8) & 0x00FF));
@@ -133,9 +136,9 @@ public partial class CPU {
         return instruction;
     }
 
-    public Dictionary<uint16_t, string> Disassemble(uint16_t startAddress, uint16_t endAddress) {
-        return Disassembler.Disassemble(this.m_Bus!.RAM.Data[startAddress..endAddress], startAddress);
-    }
+    //public Dictionary<uint16_t, string> Disassemble(uint16_t startAddress, uint16_t endAddress) {
+    //    return Disassembler.Disassemble(this.m_Bus!.RAM.Data[startAddress..endAddress], startAddress);
+    //}
 
     public override string ToString() {
         // string statusString = this.Status.ToString("F").Indent(4, false);

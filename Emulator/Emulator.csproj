@@ -11,12 +11,13 @@
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="7.0.0-preview.2.22152.2" />
     </ItemGroup>
 
+
     <ItemGroup>
-        <ProjectReference Include="..\Utilities\Utilities.csproj" />
+        <None Remove="Emulator.csproj.DotSettings" />
     </ItemGroup>
 
 
     <ItemGroup>
-        <None Remove="Emulator.csproj.DotSettings" />
+      <ProjectReference Include="..\Utilities\Utilities.csproj" />
     </ItemGroup>
 </Project>

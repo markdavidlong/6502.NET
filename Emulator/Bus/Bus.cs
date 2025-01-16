@@ -2,8 +2,8 @@
 
 namespace Emulator;
 
-public class Bus {
-    public readonly Memory RAM = new(64 * KB);
+public class Bus : IBus {
+    public IMemory RAM { get; } = new Memory(64 * KB);
     public uint64_t SystemClockCounter => this.m_SystemClockCounter;
 
     private uint64_t m_SystemClockCounter;
@@ -13,13 +13,14 @@ public class Bus {
     // private Cartridge m_Cartridge;
 
     public void Connect(CPU cpu) {
+   
         this.m_CPU = cpu;
         this.m_CPU.Connect(this);
     }
 
     public uint8_t CpuRead(uint16_t address, bool readOnly = false) {
         if (address >= 0x0000 && address <= 0xFFFF) {
-            return this.RAM[address];
+            return this.RAM.Read(address);
         }
 
         return 0x00;
@@ -27,7 +28,7 @@ public class Bus {
 
     public void CpuWrite(uint16_t address, uint8_t data) {
         if (address >= 0x0000 && address <= 0xFFFF) {
-            this.RAM[address] = data;
+            this.RAM.Write(address, data);
         }
     }
 

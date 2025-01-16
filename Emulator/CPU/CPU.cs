@@ -8,7 +8,7 @@ public partial class CPU {
     public uint8_t Y;
     public ProcessorStatus Status;
 
-    private Bus? m_Bus;
+    private IBus? m_Bus;
 
     private uint8_t m_Fetched;
     private uint16_t m_Temp;
