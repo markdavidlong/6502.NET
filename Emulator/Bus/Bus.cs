@@ -1,16 +1,11 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Emulator;
+﻿namespace Emulator;
 
 public class Bus : IBus {
     public IMemory RAM { get; } = new Memory(64 * KB);
     public uint64_t SystemClockCounter => this.m_SystemClockCounter;
 
     private uint64_t m_SystemClockCounter;
-    // Devices
     private CPU? m_CPU;
-    // private PPU m_PPU;
-    // private Cartridge m_Cartridge;
 
     public void Connect(CPU cpu) {
    
@@ -19,17 +14,11 @@ public class Bus : IBus {
     }
 
     public uint8_t CpuRead(uint16_t address, bool readOnly = false) {
-        if (address >= 0x0000 && address <= 0xFFFF) {
-            return this.RAM.Read(address);
-        }
-
-        return 0x00;
+        return this.RAM.Read(address);
     }
 
     public void CpuWrite(uint16_t address, uint8_t data) {
-        if (address >= 0x0000 && address <= 0xFFFF) {
-            this.RAM.Write(address, data);
-        }
+        this.RAM.Write(address, data);
     }
 
     public void Clock() {

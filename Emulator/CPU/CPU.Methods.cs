@@ -4,7 +4,7 @@ using Utilities;
 namespace Emulator;
 
 public partial class CPU {
-    public void Connect(Bus? bus) {
+    public void Connect(IBus? bus) {
         this.m_Bus = bus;
     }
 
