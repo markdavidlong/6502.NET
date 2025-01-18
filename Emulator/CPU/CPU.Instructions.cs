@@ -41,45 +41,57 @@ public partial class CPU {
         return false;
     }
 
-    private static bool BCC(CPU cpu) {
-        if (cpu.Status.Carry) return false;
-
-        cpu.m_Cycles++;
-        cpu.m_AbsoluteAddress = (uint16_t)(cpu.PC + cpu.m_RelativeAddress);
-
-        if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00)) {
+    private static bool BCC(CPU cpu)
+    {
+        if (!cpu.Status.Carry)
+        {
             cpu.m_Cycles++;
+            cpu.m_AbsoluteAddress = (uint16_t) (cpu.PC + cpu.m_RelativeAddress);
+
+            if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00))
+            {
+                cpu.m_Cycles++;
+            }
+
+            cpu.PC = cpu.m_AbsoluteAddress;
         }
 
-        cpu.PC = cpu.m_AbsoluteAddress;
         return false;
     }
 
-    private static bool BCS(CPU cpu) {
-        if (!cpu.Status.Carry) return false;
-
-        cpu.m_Cycles++;
-        cpu.m_AbsoluteAddress = (uint16_t)(cpu.PC + cpu.m_RelativeAddress);
-
-        if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00)) {
+    private static bool BCS(CPU cpu)
+    {
+        if (cpu.Status.Carry)
+        {
             cpu.m_Cycles++;
+            cpu.m_AbsoluteAddress = (uint16_t) (cpu.PC + cpu.m_RelativeAddress);
+
+            if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00))
+            {
+                cpu.m_Cycles++;
+            }
+
+            cpu.PC = cpu.m_AbsoluteAddress;
         }
 
-        cpu.PC = cpu.m_AbsoluteAddress;
         return false;
     }
 
-    private static bool BEQ(CPU cpu) {
-        if (!cpu.Status.Zero) return false;
-
-        cpu.m_Cycles++;
-        cpu.m_AbsoluteAddress = (uint16_t)(cpu.PC + cpu.m_RelativeAddress);
-
-        if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00)) {
+    private static bool BEQ(CPU cpu)
+    {
+        if (cpu.Status.Zero)
+        {
             cpu.m_Cycles++;
+            cpu.m_AbsoluteAddress = (uint16_t) (cpu.PC + cpu.m_RelativeAddress);
+
+            if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00))
+            {
+                cpu.m_Cycles++;
+            }
+
+            cpu.PC = cpu.m_AbsoluteAddress;
         }
 
-        cpu.PC = cpu.m_AbsoluteAddress;
         return false;
     }
 
@@ -92,45 +104,57 @@ public partial class CPU {
         return false;
     }
 
-    private static bool BMI(CPU cpu) {
-        if (!cpu.Status.Negative) return false;
-
-        cpu.m_Cycles++;
-        cpu.m_AbsoluteAddress = (uint16_t)(cpu.PC + cpu.m_RelativeAddress);
-
-        if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00)) {
+    private static bool BMI(CPU cpu)
+    {
+        if (cpu.Status.Negative)
+        {
             cpu.m_Cycles++;
+            cpu.m_AbsoluteAddress = (uint16_t) (cpu.PC + cpu.m_RelativeAddress);
+
+            if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00))
+            {
+                cpu.m_Cycles++;
+            }
+
+            cpu.PC = cpu.m_AbsoluteAddress;
         }
 
-        cpu.PC = cpu.m_AbsoluteAddress;
         return false;
     }
 
-    private static bool BNE(CPU cpu) {
-        if (cpu.Status.Zero) return false;
-
-        cpu.m_Cycles++;
-        cpu.m_AbsoluteAddress = (uint16_t)(cpu.PC + cpu.m_RelativeAddress);
-
-        if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00)) {
+    private static bool BNE(CPU cpu)
+    {
+        if (!cpu.Status.Zero)
+        {
             cpu.m_Cycles++;
+            cpu.m_AbsoluteAddress = (uint16_t) (cpu.PC + cpu.m_RelativeAddress);
+
+            if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00))
+            {
+                cpu.m_Cycles++;
+            }
+
+            cpu.PC = cpu.m_AbsoluteAddress;
         }
 
-        cpu.PC = cpu.m_AbsoluteAddress;
         return false;
     }
 
-    private static bool BPL(CPU cpu) {
-        if (cpu.Status.Negative) return false;
-
-        cpu.m_Cycles++;
-        cpu.m_AbsoluteAddress = (uint16_t)(cpu.PC + cpu.m_RelativeAddress);
-
-        if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00)) {
+    private static bool BPL(CPU cpu)
+    {
+        if (!cpu.Status.Negative)
+        {
             cpu.m_Cycles++;
+            cpu.m_AbsoluteAddress = (uint16_t) (cpu.PC + cpu.m_RelativeAddress);
+
+            if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00))
+            {
+                cpu.m_Cycles++;
+            }
+
+            cpu.PC = cpu.m_AbsoluteAddress;
         }
 
-        cpu.PC = cpu.m_AbsoluteAddress;
         return false;
     }
 
@@ -156,31 +180,39 @@ public partial class CPU {
         return false;
     }
 
-    private static bool BVC(CPU cpu) {
-        if (cpu.Status.Overflow) return false;
-
-        cpu.m_Cycles++;
-        cpu.m_AbsoluteAddress = (uint16_t)(cpu.PC + cpu.m_RelativeAddress);
-
-        if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00)) {
+    private static bool BVC(CPU cpu)
+    {
+        if (!cpu.Status.Overflow)
+        {
             cpu.m_Cycles++;
+            cpu.m_AbsoluteAddress = (uint16_t) (cpu.PC + cpu.m_RelativeAddress);
+
+            if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00))
+            {
+                cpu.m_Cycles++;
+            }
+
+            cpu.PC = cpu.m_AbsoluteAddress;
         }
 
-        cpu.PC = cpu.m_AbsoluteAddress;
         return false;
     }
 
-    private static bool BVS(CPU cpu) {
-        if (!cpu.Status.Overflow) return false;
-
-        cpu.m_Cycles++;
-        cpu.m_AbsoluteAddress = (uint16_t)(cpu.PC + cpu.m_RelativeAddress);
-
-        if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00)) {
+    private static bool BVS(CPU cpu)
+    {
+        if (cpu.Status.Overflow)
+        {
             cpu.m_Cycles++;
+            cpu.m_AbsoluteAddress = (uint16_t) (cpu.PC + cpu.m_RelativeAddress);
+
+            if ((cpu.m_AbsoluteAddress & 0xFF00) != (cpu.PC & 0xFF00))
+            {
+                cpu.m_Cycles++;
+            }
+
+            cpu.PC = cpu.m_AbsoluteAddress;
         }
 
-        cpu.PC = cpu.m_AbsoluteAddress;
         return false;
     }
 
@@ -352,17 +384,11 @@ public partial class CPU {
 
     private static bool NOP(CPU cpu) {
         // https://github.com/OneLoneCoder/olcNES/blob/master/Part%232%20-%20CPU/olc6502.cpp#L1192
-        switch (cpu.m_Opcode) {
-            case 0x1C:
-            case 0x3C:
-            case 0x5C:
-            case 0x7C:
-            case 0xDC:
-            case 0xFC:
-                return true;
-        }
-
-        return false;
+        return cpu.m_Opcode switch
+        {
+            0x1C or 0x3C or 0x5C or 0x7C or 0xDC or 0xFC => true,
+            _ => false,
+        };
     }
 
     private static bool ORA(CPU cpu) {
@@ -555,7 +581,7 @@ public partial class CPU {
     // Illegal/unofficial opcodes
     private static bool XXX(CPU cpu) => false;
 
-    public static readonly unsafe Instruction[] InstructionLookupTable = {
+    public static readonly unsafe Instruction[] InstructionLookupTable = [
         new(InstructionKind.BRK, AddressingMode.IMM, 7, &BRK, &IMP), new(InstructionKind.ORA, AddressingMode.IZX, 6, &ORA, &IZX), new(InstructionKind.XXX, AddressingMode.IMP, 2, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 8, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 3, &NOP, &IMP), new(InstructionKind.ORA, AddressingMode.ZP0, 3, &ORA, &ZP0), new(InstructionKind.ASL, AddressingMode.ZP0, 5, &ASL, &ZP0), new(InstructionKind.XXX, AddressingMode.IMP, 5, &XXX, &IMP), new(InstructionKind.PHP, AddressingMode.IMP, 3, &PHP, &IMP), new(InstructionKind.ORA, AddressingMode.IMM, 2, &ORA, &IMM), new(InstructionKind.ASL, AddressingMode.IMP, 2, &ASL, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 2, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 4, &NOP, &IMP), new(InstructionKind.ORA, AddressingMode.ABS, 4, &ORA, &ABS), new(InstructionKind.ASL, AddressingMode.ABS, 6, &ASL, &ABS), new(InstructionKind.XXX, AddressingMode.IMP, 6, &XXX, &IMP),
         new(InstructionKind.BPL, AddressingMode.REL, 2, &BPL, &REL), new(InstructionKind.ORA, AddressingMode.IZY, 5, &ORA, &IZY), new(InstructionKind.XXX, AddressingMode.IMP, 2, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 8, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 4, &NOP, &IMP), new(InstructionKind.ORA, AddressingMode.ZPX, 4, &ORA, &ZPX), new(InstructionKind.ASL, AddressingMode.ZPX, 6, &ASL, &ZPX), new(InstructionKind.XXX, AddressingMode.IMP, 6, &XXX, &IMP), new(InstructionKind.CLC, AddressingMode.IMP, 2, &CLC, &IMP), new(InstructionKind.ORA, AddressingMode.ABY, 4, &ORA, &ABY), new(InstructionKind.XXX, AddressingMode.IMP, 2, &NOP, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 7, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 4, &NOP, &IMP), new(InstructionKind.ORA, AddressingMode.ABX, 4, &ORA, &ABX), new(InstructionKind.ASL, AddressingMode.ABX, 7, &ASL, &ABX), new(InstructionKind.XXX, AddressingMode.IMP, 7, &XXX, &IMP),
         new(InstructionKind.JSR, AddressingMode.ABS, 6, &JSR, &ABS), new(InstructionKind.AND, AddressingMode.IZX, 6, &AND, &IZX), new(InstructionKind.XXX, AddressingMode.IMP, 2, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 8, &XXX, &IMP), new(InstructionKind.BIT, AddressingMode.ZP0, 3, &BIT, &ZP0), new(InstructionKind.AND, AddressingMode.ZP0, 3, &AND, &ZP0), new(InstructionKind.ROL, AddressingMode.ZP0, 5, &ROL, &ZP0), new(InstructionKind.XXX, AddressingMode.IMP, 5, &XXX, &IMP), new(InstructionKind.PLP, AddressingMode.IMP, 4, &PLP, &IMP), new(InstructionKind.AND, AddressingMode.IMM, 2, &AND, &IMM), new(InstructionKind.ROL, AddressingMode.IMP, 2, &ROL, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 2, &XXX, &IMP), new(InstructionKind.BIT, AddressingMode.ABS, 4, &BIT, &ABS), new(InstructionKind.AND, AddressingMode.ABS, 4, &AND, &ABS), new(InstructionKind.ROL, AddressingMode.ABS, 6, &ROL, &ABS), new(InstructionKind.XXX, AddressingMode.IMP, 6, &XXX, &IMP),
@@ -572,5 +598,5 @@ public partial class CPU {
         new(InstructionKind.BNE, AddressingMode.REL, 2, &BNE, &REL), new(InstructionKind.CMP, AddressingMode.IZY, 5, &CMP, &IZY), new(InstructionKind.XXX, AddressingMode.IMP, 2, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 8, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 4, &NOP, &IMP), new(InstructionKind.CMP, AddressingMode.ZPX, 4, &CMP, &ZPX), new(InstructionKind.DEC, AddressingMode.ZPX, 6, &DEC, &ZPX), new(InstructionKind.XXX, AddressingMode.IMP, 6, &XXX, &IMP), new(InstructionKind.CLD, AddressingMode.IMP, 2, &CLD, &IMP), new(InstructionKind.CMP, AddressingMode.ABY, 4, &CMP, &ABY), new(InstructionKind.NOP, AddressingMode.IMP, 2, &NOP, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 7, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 4, &NOP, &IMP), new(InstructionKind.CMP, AddressingMode.ABX, 4, &CMP, &ABX), new(InstructionKind.DEC, AddressingMode.ABX, 7, &DEC, &ABX), new(InstructionKind.XXX, AddressingMode.IMP, 7, &XXX, &IMP),
         new(InstructionKind.CPX, AddressingMode.IMM, 2, &CPX, &IMM), new(InstructionKind.SBC, AddressingMode.IZX, 6, &SBC, &IZX), new(InstructionKind.XXX, AddressingMode.IMP, 2, &NOP, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 8, &XXX, &IMP), new(InstructionKind.CPX, AddressingMode.ZP0, 3, &CPX, &ZP0), new(InstructionKind.SBC, AddressingMode.ZP0, 3, &SBC, &ZP0), new(InstructionKind.INC, AddressingMode.ZP0, 5, &INC, &ZP0), new(InstructionKind.XXX, AddressingMode.IMP, 5, &XXX, &IMP), new(InstructionKind.INX, AddressingMode.IMP, 2, &INX, &IMP), new(InstructionKind.SBC, AddressingMode.IMM, 2, &SBC, &IMM), new(InstructionKind.NOP, AddressingMode.IMP, 2, &NOP, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 2, &SBC, &IMP), new(InstructionKind.CPX, AddressingMode.ABS, 4, &CPX, &ABS), new(InstructionKind.SBC, AddressingMode.ABS, 4, &SBC, &ABS), new(InstructionKind.INC, AddressingMode.ABS, 6, &INC, &ABS), new(InstructionKind.XXX, AddressingMode.IMP, 6, &XXX, &IMP),
         new(InstructionKind.BEQ, AddressingMode.REL, 2, &BEQ, &REL), new(InstructionKind.SBC, AddressingMode.IZY, 5, &SBC, &IZY), new(InstructionKind.XXX, AddressingMode.IMP, 2, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 8, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 4, &NOP, &IMP), new(InstructionKind.SBC, AddressingMode.ZPX, 4, &SBC, &ZPX), new(InstructionKind.INC, AddressingMode.ZPX, 6, &INC, &ZPX), new(InstructionKind.XXX, AddressingMode.IMP, 6, &XXX, &IMP), new(InstructionKind.SED, AddressingMode.IMP, 2, &SED, &IMP), new(InstructionKind.SBC, AddressingMode.ABY, 4, &SBC, &ABY), new(InstructionKind.NOP, AddressingMode.IMP, 2, &NOP, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 7, &XXX, &IMP), new(InstructionKind.XXX, AddressingMode.IMP, 4, &NOP, &IMP), new(InstructionKind.SBC, AddressingMode.ABX, 4, &SBC, &ABX), new(InstructionKind.INC, AddressingMode.ABX, 7, &INC, &ABX), new(InstructionKind.XXX, AddressingMode.IMP, 7, &XXX, &IMP),
-    };
+    ];
 }
