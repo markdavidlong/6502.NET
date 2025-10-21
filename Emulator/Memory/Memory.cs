@@ -7,6 +7,8 @@ namespace Emulator;
 public readonly partial struct Memory : IMemory {
     private readonly uint8_t[] m_Data;
 
+    public uint8_t[] DataArray() => this.m_Data;
+
 #pragma warning disable IDE0290
     public Memory(int32_t size) => this.m_Data = new uint8_t[size];
 

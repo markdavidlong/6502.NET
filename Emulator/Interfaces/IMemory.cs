@@ -13,6 +13,7 @@ namespace Emulator
         void Write(uint16_t address, uint8_t data);
         void WriteBlock(uint16_t offset, params uint8_t[] data);
 
+        uint8_t[] DataArray();
         // Indexer
         uint8_t this[uint16_t address] { get; set; }
 

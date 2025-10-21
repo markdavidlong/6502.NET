@@ -9,7 +9,7 @@ Bus bus = new();
 CPU cpu = new();
 bus.Connect(cpu);
 
-const string testPath = "C:/dev/dotnet/Emulator6502/External/tests/6502_functional_test.bin";
+const string testPath = "E:/develop/6502.NET/External/tests/6502_functional_test.bin";
 const ushort testOffset = 0x000A;
 const ushort testStartAddress = 0x0400;
 
