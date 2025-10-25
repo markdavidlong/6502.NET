@@ -22,6 +22,15 @@ public readonly partial struct Memory : IMemory {
         set => this.m_Data[address] = value;
     }
 
+    public uint8_t[] ReadBlock(uint16_t address, int32_t length)
+    {
+        int32_t availableLength = Math.Max(0, this.m_Data.Length - address);
+        int32_t readLength = Math.Min(length, availableLength);
+
+        uint8_t[] buffer = new uint8_t[readLength];
+        Array.Copy(this.m_Data, address, buffer, 0, readLength);
+        return buffer;
+    }
     public uint8_t Read(uint16_t address) => this.m_Data[address];
     public void Write(uint16_t address, uint8_t data) => this.m_Data[address] = data;
 
