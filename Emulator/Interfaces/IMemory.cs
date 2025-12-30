@@ -11,12 +11,11 @@ namespace Emulator
         // Core memory operations
         uint8_t Read(uint16_t address);
         void Write(uint16_t address, uint8_t data);
-        void WriteBlock(uint16_t offset, params uint8_t[] data);
+      //  void WriteBlock(uint16_t offset, params uint8_t[] data);
 
-        uint8_t[] ReadBlock(uint16_t address, int32_t length);
+     //   uint8_t[] ReadBlock(uint16_t address, int32_t length);
 
-        uint8_t[] DataArray();
-        // Indexer
+     //   // Indexer
         uint8_t this[uint16_t address] { get; set; }
 
         // Debug/Utility methods
